@@ -1,10 +1,18 @@
-body {
-  font-family: Arial, sans-serif;
-  background: url("/Fresh-From-Canada/images/background.jpg") no-repeat center center/cover;
-  background-size: cover;
-  color: white;
+/* RESET GLOBAL (IMPORTANT) */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  font-family: Arial, sans-serif;
+
+  /* ✅ CORRECTION CHEMIN IMAGE */
+  background: url("images/background.jpg") no-repeat center center/cover;
+
+  color: white;
 }
 
 /* NAVBAR */
@@ -83,6 +91,10 @@ nav a:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
   padding: 40px;
+
+  /* ✅ évite le zoom global */
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* PRODUIT CARD */
@@ -100,11 +112,23 @@ nav a:hover {
   box-shadow: 0 0 20px rgba(0,255,204,0.6);
 }
 
+/* ✅ IMAGE CORRIGÉE (FIN DU ZOOM BUG) */
 .produit > img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
+  height: 180px;
+
+  /* 🔥 clé du fix */
+  object-fit: contain;
+
+  background: #111;
+  padding: 10px;
+
+  transition: transform 0.3s ease;
+}
+
+/* 🔥 effet hover PRO */
+.produit:hover img {
+  transform: scale(1.05);
 }
 
 .produit h2 {
