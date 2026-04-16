@@ -175,8 +175,3 @@ nav a:hover {
     height: 70px;
   }
 }
-.galerie img {
-  width: 25%;
-  height: 50px;
-  object-fit: cover;
-}
