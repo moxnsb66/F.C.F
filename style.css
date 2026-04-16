@@ -1,4 +1,4 @@
-/* RESET */
+/* RESET GLOBAL */
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +26,59 @@ nav a {
   font-weight: bold;
 }
 
-/* GRID */
+nav a:hover {
+  color: white;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 60px;
+  color: #00ffcc;
+}
+
+.hero p {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: #00ffcc;
+  color: black;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: white;
+}
+
+/* PRODUITS GRID */
 .produits {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -36,57 +88,50 @@ nav a {
   margin: auto;
 }
 
-/* CARD */
+/* PRODUIT CARD */
 .produit {
   background: #111;
   border-radius: 15px;
   overflow: hidden;
   text-align: center;
-  padding: 10px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0,255,204,0.2);
   min-height: 320px;
 }
 
-/* IMAGE BASE */
+.produit:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(0,255,204,0.6);
+}
+
+/* ✅ IMAGE UNIFORME (FIX FINAL) */
 .produit img {
   width: 100%;
   height: 200px;
-  display: block;
-}
 
-/* 📱 TELEPHONES */
-.telephone img {
-  object-fit: contain;
-  background: white;
-  padding: 10px;
-}
-
-/* 🧴 PARFUMS */
-.parfum img {
-  object-fit: contain;
-  background: #111;
-}
-
-/* 👟 CHAUSSURES */
-.chaussure img {
+  /* 🔥 solution universelle */
   object-fit: cover;
+
+  display: block;
 }
 
 /* TITRES */
 .produit h2 {
-  margin: 10px 0;
+  margin: 15px 0 5px;
   color: #00ffcc;
 }
 
 /* PRIX */
 .prix {
+  font-size: 20px;
   font-weight: bold;
 }
 
 /* BOUTON */
 .produit a {
   display: block;
-  margin-top: 10px;
-  padding: 10px;
+  margin: 15px;
+  padding: 12px;
   background: #00ffcc;
   color: black;
   border-radius: 8px;
@@ -94,20 +139,44 @@ nav a {
   font-weight: bold;
 }
 
-/* HOVER */
-.produit:hover {
-  transform: translateY(-5px);
-  transition: 0.3s;
+.produit a:hover {
+  background: white;
+}
+
+/* GALERIE */
+.galerie {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+}
+
+.galerie img {
+  width: 25%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .produits {
+    padding: 20px;
+  }
+
   .produit img {
-    height: 180px;
+    height: 70px;
   }
 }
 .galerie img {
   width: 25%;
-  height: 80px;
+  height: 50px;
   object-fit: cover;
 }
