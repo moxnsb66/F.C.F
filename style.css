@@ -1,0 +1,162 @@
+body {
+  font-family: Arial, sans-serif;
+  background: url("/Fresh-From-Canada/images/background.jpg") no-repeat center center/cover;
+  background-size: cover;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+/* NAVBAR */
+nav {
+  background: #111;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: #00ffcc;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* COUCHE SOMBRE */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* TEXTE HERO */
+.hero-text {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 60px;
+  color: #00ffcc;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: #00ffcc;
+  color: black;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: white;
+}
+
+/* PRODUITS GRID */
+.produits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px;
+}
+
+/* PRODUIT CARD */
+.produit {
+  background: #111;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0,255,204,0.2);
+}
+
+.produit:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(0,255,204,0.6);
+}
+
+.produit > img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.produit h2 {
+  margin: 15px 0 5px;
+  color: #00ffcc;
+}
+
+.prix {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.produit a {
+  display: block;
+  margin: 15px;
+  padding: 12px;
+  background: #00ffcc;
+  color: black;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.produit a:hover {
+  background: white;
+}
+
+/* GALERIE */
+.galerie {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+}
+
+.galerie img {
+  width: 25%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .galerie img {
+    height: 70px;
+  }
+}
