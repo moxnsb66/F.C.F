@@ -115,15 +115,10 @@ nav a:hover {
 /* ✅ IMAGE CORRIGÉE (FIN DU ZOOM BUG) */
 .produit > img {
   width: 100%;
-  height: 180px;
-
-  /* 🔥 clé du fix */
+  height: 200px;
   object-fit: contain;
-
-  background: #111;
-  padding: 10px;
-
-  transition: transform 0.3s ease;
+  background: white;
+  padding: 5px;
 }
 
 /* 🔥 effet hover PRO */
