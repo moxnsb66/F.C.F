@@ -1,4 +1,4 @@
-/* RESET GLOBAL (IMPORTANT) */
+/* RESET GLOBAL */
 * {
   margin: 0;
   padding: 0;
@@ -8,10 +8,7 @@
 /* BODY */
 body {
   font-family: Arial, sans-serif;
-
-  /* ✅ CORRECTION CHEMIN IMAGE */
   background: url("images/background.jpg") no-repeat center center/cover;
-
   color: white;
 }
 
@@ -42,7 +39,6 @@ nav a:hover {
   align-items: center;
 }
 
-/* COUCHE SOMBRE */
 .overlay {
   position: absolute;
   width: 100%;
@@ -53,7 +49,6 @@ nav a:hover {
   z-index: 1;
 }
 
-/* TEXTE HERO */
 .hero-text {
   position: relative;
   text-align: center;
@@ -63,7 +58,6 @@ nav a:hover {
 .hero h1 {
   font-size: 60px;
   color: #00ffcc;
-  letter-spacing: 2px;
 }
 
 .hero p {
@@ -78,7 +72,6 @@ nav a:hover {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  display: inline-block;
 }
 
 .btn:hover {
@@ -91,8 +84,6 @@ nav a:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
   padding: 40px;
-
-  /* ✅ évite le zoom global */
   max-width: 1200px;
   margin: auto;
 }
@@ -105,6 +96,7 @@ nav a:hover {
   text-align: center;
   transition: 0.3s;
   box-shadow: 0 0 10px rgba(0,255,204,0.2);
+  min-height: 320px;
 }
 
 .produit:hover {
@@ -112,30 +104,30 @@ nav a:hover {
   box-shadow: 0 0 20px rgba(0,255,204,0.6);
 }
 
-/* ✅ IMAGE CORRIGÉE (FIN DU ZOOM BUG) */
-.produit > img {
+/* ✅ IMAGE UNIFORME (FIX FINAL) */
+.produit img {
   width: 100%;
-  height: 50px;
-  object-fit: contain;
-  background: white;
-  padding: 5px;
+  height: 200px;
+
+  /* 🔥 solution universelle */
+  object-fit: cover;
+
+  display: block;
 }
 
-/* 🔥 effet hover PRO */
-.produit:hover img {
-  transform: scale(1.05);
-}
-
+/* TITRES */
 .produit h2 {
   margin: 15px 0 5px;
   color: #00ffcc;
 }
 
+/* PRIX */
 .prix {
   font-size: 20px;
   font-weight: bold;
 }
 
+/* BOUTON */
 .produit a {
   display: block;
   margin: 15px;
@@ -175,7 +167,11 @@ nav a:hover {
     font-size: 16px;
   }
 
-  .galerie img {
-    height: 70px;
+  .produits {
+    padding: 20px;
+  }
+
+  .produit img {
+    height: 180px;
   }
 }
