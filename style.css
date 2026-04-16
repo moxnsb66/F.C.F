@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+/* STOP DÉBORDEMENT */
+html, body {
+  overflow-x: hidden;
+}
+
 /* BODY */
 body {
   font-family: Arial, sans-serif;
@@ -82,9 +87,9 @@ nav a:hover {
 /* PRODUITS GRID */
 .produits {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  padding: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
   max-width: 1200px;
   margin: auto;
 }
@@ -106,17 +111,18 @@ nav a:hover {
 }
 
 /* =========================
-   GALERIE (FIX PRINCIPAL)
+   GALERIE GLOBAL
 ========================= */
 .galerie {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   padding: 10px;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-/* PARFUMS (OK – on garde ton style mais propre) */
+/* PARFUMS (OK - inchangé propre) */
 .galerie.parfum img {
   width: 32%;
   height: 90px;
@@ -124,24 +130,24 @@ nav a:hover {
   border-radius: 5px;
 }
 
-/* CHAUSSURES (ajusté) */
+/* CHAUSSURES */
 .galerie.chaussures img {
   width: 32%;
   height: 110px;
   object-fit: contain;
   background: #111;
-  border-radius: 5px;
   padding: 5px;
+  border-radius: 5px;
 }
 
-/* TÉLÉPHONES (corrigé – problème principal chez toi) */
+/* TÉLÉPHONES */
 .galerie.telephone img {
   width: 32%;
   height: 130px;
   object-fit: contain;
   background: #000;
-  border-radius: 5px;
   padding: 8px;
+  border-radius: 5px;
 }
 
 /* TITRES */
@@ -173,10 +179,16 @@ nav a:hover {
   background: white;
 }
 
+/* IMAGE GLOBAL FIX */
+img {
+  max-width: 100%;
+  display: block;
+}
+
 /* MOBILE */
 @media (max-width: 600px) {
   .hero h1 {
-    font-size: 35px;
+    font-size: 32px;
   }
 
   .hero p {
@@ -184,16 +196,10 @@ nav a:hover {
   }
 
   .produits {
-    padding: 20px;
+    padding: 15px;
   }
 
   .galerie img {
-    height: 60px;
+    height: 70px;
   }
-}
-
-/* IMAGE GLOBAL FIX */
-img {
-  max-width: 100%;
-  display: block;
 }
