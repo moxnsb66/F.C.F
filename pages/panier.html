@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Panier</title>
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.85);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      gap: 15px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .info {
+      flex: 1;
+      text-align: left;
+    }
+
+    .info h3 {
+      color: #00ffcc;
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-box button {
+      padding: 5px 10px;
+      border: none;
+      background: #00ffcc;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .btn {
+      background: #00ffcc;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="produits.html">Produits</a>
+</nav>
+
+<h1 style="text-align:center; color:#00ffcc; margin-top:20px;">
+  Votre Panier
+</h1>
+
+<div id="panier-container" class="container"></div>
+
+<h2 id="total" style="text-align:center; color:#00ffcc;"></h2>
+
+<div style="text-align:center; margin:20px;">
+  <button onclick="commander()" class="btn">
+    Commander sur WhatsApp
+  </button>
+</div>
+
+<script>
+
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+/* 🔥 NORMALISER LES DONNÉES */
+panier = panier.map(item => {
+  return {
+    nom: item.nom,
+    prix: item.prix,
+    image: item.image || "../images/default.jpg",
+    variante: item.variante || item.taille || item.capacite || "",
+    qty: item.qty || item.quantite || 1
+  };
+});
+
+/* AFFICHER */
+function afficherPanier() {
+  let container = document.getElementById("panier-container");
+  let total = 0;
+
+  container.innerHTML = "";
+
+  panier.forEach((item, index) => {
+
+    let sousTotal = item.prix * item.qty;
+    total += sousTotal;
+
+    container.innerHTML += `
+      <div class="cart-item">
+
+        <img src="${item.image}">
+
+        <div class="info">
+          <h3>${item.nom}</h3>
+          <p>Option : ${item.variante || "Standard"}</p>
+          <p>Prix : ${item.prix}$</p>
+          <p>Sous-total : ${sousTotal}$</p>
+        </div>
+
+        <div class="qty-box">
+          <button onclick="moins(${index})">−</button>
+          <span>${item.qty}</span>
+          <button onclick="plus(${index})">+</button>
+        </div>
+
+        <button onclick="supprimer(${index})" class="btn">
+          ❌
+        </button>
+
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = "Total : " + total + "$";
+
+  localStorage.setItem("panier", JSON.stringify(panier));
+}
+
+/* + */
+function plus(index) {
+  panier[index].qty++;
+  afficherPanier();
+}
+
+/* - */
+function moins(index) {
+  panier[index].qty--;
+
+  if (panier[index].qty <= 0) {
+    panier.splice(index, 1);
+  }
+
+  afficherPanier();
+}
+
+/* SUPPRIMER */
+function supprimer(index) {
+  panier.splice(index, 1);
+  afficherPanier();
+}
+
+/* WHATSAPP */
+function commander() {
+  let message = "Bonjour, je veux commander :%0A";
+
+  panier.forEach(item => {
+    message += `- ${item.nom} (${item.variante}) x${item.qty} = ${item.prix * item.qty}$%0A`;
+  });
+
+  window.open("https://wa.me/14184902134?text=" + message);
+}
+
+afficherPanier();
+
+</script>
+
+</body>
+</html>

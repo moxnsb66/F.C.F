@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Nike Air Force 1</title>
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .product-container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      text-align: center;
+    }
+
+    #mainImage {
+      width: 260px;
+      margin-bottom: 20px;
+    }
+
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .thumbnails img {
+      width: 60px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: 2px solid transparent;
+    }
+
+    .thumbnails img.active {
+      border: 2px solid #00ffcc;
+    }
+
+    select {
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .panier {
+      background: #00ffcc;
+    }
+
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    #prix-af1 {
+      font-size: 22px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="produits.html">Produits</a>
+  <a href="panier.html">🛒 Panier</a>
+</nav>
+
+<div class="product-container">
+
+  <h1 style="color:#00ffcc;">Nike Air Force 1</h1>
+
+  <!-- IMAGE PRINCIPALE -->
+  <img id="mainImage" src="../images/nike-blanc.jpg">
+
+  <!-- MINIATURES -->
+  <div class="thumbnails">
+    <img class="active" src="../images/nike-blanc.jpg" onclick="changerImage(this)">
+    <img src="../images/nike-noir.jpg" onclick="changerImage(this)">
+    <img src="../images/nike-bleu.jpg" onclick="changerImage(this)">
+    <img src="../images/nike-rouge.jpg" onclick="changerImage(this)">
+  </div>
+
+  <!-- PRIX -->
+  <p id="prix-af1">120$</p>
+
+  <!-- TAILLE -->
+  <select id="var-af1" onchange="changerPrix()">
+    <option value="120">40</option>
+    <option value="125">41</option>
+    <option value="130">42</option>
+    <option value="135">43</option>
+    <option value="140">44</option>
+  </select>
+
+  <br><br>
+
+  <!-- PANIER -->
+  <button class="btn panier" onclick="ajouterAF1()">
+    🛒 Ajouter au panier
+  </button>
+
+  <!-- WHATSAPP -->
+  <button class="btn whatsapp" onclick="commander()">
+    Commander sur WhatsApp
+  </button>
+
+</div>
+
+<!-- SCRIPT GLOBAL -->
+<script src="../script.js"></script>
+
+<script>
+
+/* 🔥 IMAGE */
+function changerImage(element) {
+  document.getElementById("mainImage").src = element.src;
+
+  document.querySelectorAll(".thumbnails img").forEach(img => {
+    img.classList.remove("active");
+  });
+
+  element.classList.add("active");
+}
+
+/* 🔥 PRIX */
+function changerPrix() {
+  let prix = document.getElementById("var-af1").value;
+  document.getElementById("prix-af1").innerText = prix + "$";
+}
+
+/* 🔥 AJOUT PANIER (FIX FINAL) */
+function ajouterAF1() {
+
+  let select = document.getElementById("var-af1");
+  let taille = select.options[select.selectedIndex].text;
+  let prix = parseInt(select.value);
+
+  let image = document.getElementById("mainImage").src;
+
+  let nom = "Nike Air Force 1 - " + taille;
+
+  addToCart(nom, prix, image);
+}
+
+/* 🔥 WHATSAPP */
+function commander() {
+  let select = document.getElementById("var-af1");
+
+  let taille = select.options[select.selectedIndex].text;
+  let prix = select.value;
+
+  let message = `Bonjour, je veux commander des Nike Air Force 1 (taille ${taille}, ${prix}$)`;
+
+  window.open("https://wa.me/14184902134?text=" + encodeURIComponent(message));
+}
+
+</script>
+
+</body>
+</html>

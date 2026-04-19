@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chaussures - Fresh From Canada</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="produits.html">Produits</a>
+  <a href="parfums.html">Parfums</a>
+  <a href="telephones.html">Téléphones</a>
+  <a href="panier.html">
+    🛒 Panier <span id="cart-count">0</span>
+  </a>
+</nav>
+
+<h1 class="titre">Nos Chaussures</h1>
+
+<section class="produits">
+
+<!-- AIR FORCE 1 -->
+<div class="produit">
+
+  <div class="galerie grid">
+    <img src="../images/nike-blanc.jpg">
+    <img src="../images/nike-noir.jpg">
+    <img src="../images/nike-bleu.jpg">
+    <img src="../images/nike-rouge.jpg">
+  </div>
+
+  <h2>Nike Air Force 1</h2>
+
+  <p class="prix">120$</p>
+
+  <select id="var-af1">
+    <option value="nike-blanc.jpg|120">Blanc</option>
+    <option value="nike-noir.jpg|150">Noir</option>
+    <option value="nike-bleu.jpg|140">Bleu</option>
+    <option value="nike-rouge.jpg|160">Rouge</option>
+  </select>
+
+  <div class="actions">
+    <button class="btn panier" onclick="ajouterAF1Liste()">
+      🛒 Ajouter
+    </button>
+
+    <a href="airforce1.html" class="btn">Voir</a>
+  </div>
+
+</div>
+
+<!-- DUNK LOW -->
+<div class="produit">
+
+  <div class="galerie grid">
+    <img src="../images/nike-low-dunk-blanc.jpg">
+    <img src="../images/nike-low-dunk-bleu.jpg">
+    <img src="../images/nike-low-dunk-Gold.jpg">
+    <img src="../images/nike-low-dunk-noir.jpg">
+  </div>
+
+  <h2>Nike Dunk Low</h2>
+
+  <p class="prix">150$</p>
+
+  <select id="var-dunk">
+    <option value="nike-low-dunk-blanc.jpg|120">Blanc</option>
+    <option value="nike-low-dunk-bleu.jpg|140">Bleu</option>
+    <option value="nike-low-dunk-Gold.jpg|160">Gold</option>
+    <option value="nike-low-dunk-noir.jpg|150">Noir</option>
+  </select>
+
+  <div class="actions">
+    <button class="btn panier" onclick="ajouterDunkListe()">
+      🛒 Ajouter
+    </button>
+
+    <a href="nike-dunk.html" class="btn">Voir</a>
+  </div>
+
+</div>
+
+</section>
+
+<script src="../script.js"></script>
+
+<script>
+
+/* 🔥 AIR FORCE LISTE */
+function ajouterAF1Liste() {
+  let select = document.getElementById("var-af1");
+  let [image, prix] = select.value.split("|");
+
+  let nom = "Nike Air Force 1 - " + select.options[select.selectedIndex].text;
+
+  addToCart(nom, parseInt(prix), "../images/" + image);
+}
+
+/* 🔥 DUNK LISTE */
+function ajouterDunkListe() {
+  let select = document.getElementById("var-dunk");
+  let [image, prix] = select.value.split("|");
+
+  let nom = "Nike Dunk Low - " + select.options[select.selectedIndex].text;
+
+  addToCart(nom, parseInt(prix), "../images/" + image);
+}
+
+</script>
+
+</body>
+</html>
