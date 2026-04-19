@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>iPhone 17 Air</title>
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .product-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    #mainImage {
+      width: 280px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background: white;
+      padding: 10px;
+    }
+
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .thumbnails img {
+      width: 70px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .thumbnails img:hover {
+      transform: scale(1.1);
+    }
+
+    .thumbnails img.active {
+      border: 2px solid #00ffcc;
+    }
+
+    select {
+      padding: 10px;
+      margin: 15px;
+      width: 220px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    #prix {
+      font-size: 24px;
+      color: #00ffcc;
+      margin: 15px 0;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 220px;
+    }
+
+    .panier {
+      background: #00ffcc;
+    }
+
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../index.html">Accueil</a>
+  <a href="produits.html">Produits</a>
+  <a href="telephones.html">Téléphones</a>
+  <a href="panier.html">🛒 Panier</a>
+</nav>
+
+<div class="product-container">
+
+  <h1 style="color:#00ffcc;">iPhone 17 Air</h1>
+
+  <!-- IMAGE PRINCIPALE -->
+  <img id="mainImage" src="../images/iphone17-air.jpg">
+
+  <!-- MINIATURES -->
+  <div class="thumbnails">
+    <img src="../images/iphone17-air-bleu-ciel.jpg" onclick="changerImage(this, 'Bleu ciel')">
+    <img src="../images/iphone17-air-blanc-nuage.jpg" onclick="changerImage(this, 'Blanc nuage')">
+    <img src="../images/iphone17-air-noir-infini.jpg" onclick="changerImage(this, 'Noir infini')">
+  </div>
+
+  <!-- PRIX -->
+  <p id="prix">1750$</p>
+
+  <!-- CAPACITE -->
+  <select id="capacite" onchange="changerPrix()">
+    <option value="1750">256GB</option>
+    <option value="2100">512GB</option>
+  </select>
+
+  <br><br>
+
+  <!-- BOUTONS -->
+  <button class="btn panier" onclick="ajouterPanier()">
+    🛒 Ajouter au panier
+  </button>
+
+  <button class="btn whatsapp" onclick="commander()">
+    Commander sur WhatsApp
+  </button>
+
+</div>
+
+<script>
+
+let couleurChoisie = "Noir";
+
+function changerImage(element, couleur) {
+  document.getElementById("mainImage").src = element.src;
+  couleurChoisie = couleur;
+
+  document.querySelectorAll(".thumbnails img").forEach(img => {
+    img.classList.remove("active");
+  });
+
+  element.classList.add("active");
+}
+
+function changerPrix() {
+  let prix = document.getElementById("capacite").value;
+  document.getElementById("prix").innerText = prix + "$";
+}
+
+function ajouterPanier() {
+
+  let capaciteSelect = document.getElementById("capacite");
+
+  let capacite = capaciteSelect.options[capaciteSelect.selectedIndex].text;
+  let prix = parseInt(capaciteSelect.value);
+
+  let produit = {
+    nom: "iPhone 17 Air",
+    capacite: capacite,
+    couleur: couleurChoisie,
+    prix: prix,
+    image: document.getElementById("mainImage").src,
+    quantite: 1
+  };
+
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+  panier.push(produit);
+
+  localStorage.setItem("panier", JSON.stringify(panier));
+
+  alert("✅ Ajouté au panier !");
+}
+
+function commander() {
+
+  let capaciteSelect = document.getElementById("capacite");
+
+  let capacite = capaciteSelect.options[capaciteSelect.selectedIndex].text;
+  let prix = capaciteSelect.value;
+
+  let message = `Bonjour, je veux commander un iPhone 17 Air (${couleurChoisie}, ${capacite}, ${prix}$)`;
+
+  window.open("https://wa.me/14184902134?text=" + encodeURIComponent(message));
+}
+
+</script>
+
+</body>
+</html>
