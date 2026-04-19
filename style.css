@@ -1,11 +1,10 @@
-/* RESET GLOBAL */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* STOP DÉBORDEMENT */
 html, body {
   overflow-x: hidden;
 }
@@ -13,193 +12,246 @@ html, body {
 /* BODY */
 body {
   font-family: Arial, sans-serif;
-  background: url("images/background.jpg") no-repeat center center/cover;
+
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+              url("../images/background.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   color: white;
-  line-height: 1.5;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
 nav {
-  background: #111;
+  width: 100%;
+  background: rgba(0,0,0,0.9);
   padding: 15px;
-  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  flex-wrap: wrap;
+  backdrop-filter: blur(5px);
 }
 
 nav a {
   color: #00ffcc;
-  margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
 nav a:hover {
   color: white;
 }
 
-/* HERO */
+/* CONTENEUR GLOBAL */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  text-align: center;
+}
+
+/* TITRE */
+.titre {
+  text-align: center;
+  color: #00ffcc;
+  padding: 30px 10px 10px;
+  font-size: 28px;
+}
+
+/* HERO (🔥 FIX PRINCIPAL DE TON PROBLÈME) */
 .hero {
   position: relative;
+  width: 100%;
   height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  text-align: center;
 }
 
 .overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  top: 0;
-  left: 0;
-  z-index: 1;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
 }
 
 .hero-text {
   position: relative;
-  text-align: center;
   z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  max-width: 700px;
+  padding: 20px;
 }
 
-.hero h1 {
-  font-size: 60px;
+.hero-text h1 {
+  font-size: 50px;
   color: #00ffcc;
 }
 
-.hero p {
-  font-size: 20px;
-  margin: 15px 0;
+.hero-text p {
+  font-size: 18px;
 }
 
-.btn {
-  padding: 12px 25px;
-  background: #00ffcc;
-  color: black;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn:hover {
-  background: white;
-}
-
-/* PRODUITS GRID */
+/* PRODUITS */
 .produits {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
   padding: 20px;
-  max-width: 1200px;
-  margin: auto;
+  width: 100%;
 }
 
-/* PRODUIT CARD */
+/* CARTE PRODUIT */
 .produit {
-  background: #111;
+  width: 280px;
+  background: rgba(17,17,17,0.95);
   border-radius: 15px;
-  overflow: hidden;
+  padding: 15px;
   text-align: center;
+
+  box-shadow: 0 0 20px rgba(0,255,204,0.15);
   transition: 0.3s;
-  box-shadow: 0 0 10px rgba(0,255,204,0.2);
-  padding-bottom: 15px;
 }
 
 .produit:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px rgba(0,255,204,0.6);
+  transform: translateY(-5px) scale(1.03);
 }
 
-/* =========================
-   GALERIE GLOBAL
-========================= */
-.galerie {
-  display: flex;
-  gap: 6px;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* PARFUMS (OK - inchangé propre) */
-.galerie.parfum img {
-  width: 32%;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-/* CHAUSSURES */
-.galerie.chaussures img {
-  width: 32%;
-  height: 110px;
-  object-fit: contain;
-  background: #111;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-/* TÉLÉPHONES */
-.galerie.telephone img {
-  width: 32%;
-  height: 130px;
-  object-fit: contain;
-  background: #000;
-  padding: 8px;
-  border-radius: 5px;
-}
-
-/* TITRES */
+/* TITRE PRODUIT */
 .produit h2 {
-  margin: 15px 0 5px;
+  margin: 10px 0;
   color: #00ffcc;
 }
 
 /* PRIX */
 .prix {
-  font-size: 20px;
+  color: #00ffcc;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* BOUTON */
-.produit a {
-  display: block;
-  margin: 10px 15px;
-  padding: 12px;
+/* GALERIE */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background: #00ffcc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* IMAGES */
+.galerie img {
+  width: 100%;
+  height: 85px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.galerie img:hover {
+  transform: scale(1.1);
+}
+
+/* BOUTONS */
+.btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
   background: #00ffcc;
   color: black;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.produit a:hover {
+.btn:hover {
   background: white;
+  transform: scale(1.05);
 }
 
-/* IMAGE GLOBAL FIX */
-img {
-  max-width: 100%;
+/* WHATSAPP */
+.whatsapp {
   display: block;
+  margin-top: 10px;
+  color: #25D366;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.whatsapp:hover {
+  text-decoration: underline;
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  .produits {
-    padding: 15px;
+  .produit {
+    width: 90%;
   }
 
   .galerie img {
     height: 70px;
   }
+
+  .titre {
+    font-size: 22px;
+  }
+
+  nav {
+    gap: 15px;
+    padding: 12px;
+  }
+}
+.cart-item {
+  background: rgba(17,17,17,0.95);
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+  color: white;
+}
+
+.qty-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.qty-box button {
+  padding: 5px 10px;
+  background: #00ffcc;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.qty-box button:hover {
+  background: white;
 }
